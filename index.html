@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiSeva | AI-Powered Smart Farming Advisor</title>
+    <meta name="description"
+        content="Personalized AI advisory for Indian farmers. Real-time soil, weather, and pest management in native languages.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-seedling"></i> KrishiSeva
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pest">Scanner</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleChat()" class="ai-guru-nav">AI Guru</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+        </ul>
+        <div class="nav-actions">
+            <div class="lang-switcher">
+                <div class="lang-pill active" onclick="setLanguage('en', this)">EN</div>
+                <div class="lang-pill" onclick="setLanguage('gu', this)">ગુજરાતી</div>
+                <div class="lang-pill" onclick="setLanguage('hi', this)">हिन्दी</div>
+            </div>
+            <div class="theme-switch" onclick="toggleTheme()" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="auth-links">
+                <a href="login.html" class="auth-link">Log In</a>
+                <a href="signup.html" class="cta-button">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content animate-fade-in">
+            <h1 id="hero-title">Empowering Every Farmer with <span class="hero-highlight">AI Intelligence</span></h1>
+            <p id="hero-desc">Bridging the gap between traditional wisdom and modern technology. Get real-time advice,
+                weather alerts, and market insights in your native language.</p>
+            <div class="hero-actions">
+                <a href="#features" class="cta-button">Explore Features</a>
+                <a href="#pest" class="cta-button cta-button--outlined">Try Pest Scanner</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="feature-card glass feature-card--clickable" id="soil-health-card" onclick="requireAuth(showSoilInfo)">
+            <i class="fas fa-microchip"></i>
+            <h3>AI Soil Health</h3>
+            <p>Personalized fertilizer recommendations based on your soil health card data.</p>
+        </div>
+
+        <div class="feature-card glass feature-card--clickable" id="weather-card" onclick="requireAuth(showWeatherInfo)">
+            <i class="fas fa-cloud-sun"></i>
+            <h3>Weather Alerts</h3>
+            <p>Hyper-local weather forecasts and predictive alerts for crop protection in Gujarat.</p>
+        </div>
+
+        <div class="feature-card glass feature-card--clickable" id="pest-card" onclick="requireAuth(openScannerModal)">
+            <i class="fas fa-bug"></i>
+            <h3>Pest Detection</h3>
+            <p>Upload a photo of your crop to instantly identify pests and diseases.</p>
+        </div>
+
+        <div class="feature-card glass feature-card--clickable" onclick="requireAuth(() => alert('Market Watch coming soon!'))">
+            <i class="fas fa-chart-line"></i>
+            <h3>Market Watch</h3>
+            <p>Real-time Mandi prices to help you sell at the best time.</p>
+        </div>
+        <div class="feature-card glass feature-card--clickable" id="govt-schemes-card" onclick="requireAuth(showGovtSchemes)">
+            <i class="fas fa-landmark"></i>
+            <h3>Govt. Integration</h3>
+            <p>Direct access to subsidies, PM-KISAN, and insurance schemes.</p>
+        </div>
+    </section>
+
+
+    <section id="pest" class="section-pest">
+        <h2 class="section-pest-title">Pest Detection Scanner</h2>
+        <p class="section-pest-desc">Simply take a photo of your crop. Our AI instantly identifies
+            the problem and suggests effective treatments.</p>
+        <div class="glass pest-card">
+            <i class="fas fa-camera pest-card-icon"></i>
+            <p>Upload or Capture Photo</p>
+            <input type="file" id="pest-upload" class="hidden-file-input" title="Upload crop photo" aria-label="Upload crop photo">
+            <button onclick="openScannerModal()" class="cta-button launch-scanner-button">Launch Scanner</button>
+        </div>
+    </section>
+
+    <section id="feedback" class="section-feedback">
+        <div class="feedback-wrap">
+            <h2 id="feedback-title" class="feedback-title">Farmers' Feedback</h2>
+            <form class="glass feedback-form">
+                <input type="text" id="feedback-name" placeholder="Your Name"
+                    class="field-input">
+                <textarea id="feedback-msg" placeholder="Your Message" rows="4"
+                    class="field-input"></textarea>
+                <button type="button" class="cta-button" onclick="sendFeedback()">Send via WhatsApp / SMS</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="logo footer-logo"><i class="fas fa-seedling"></i> KrishiSeva AI</div>
+            <p class="footer-text">Empowering 100M+ farmers with the power of Artificial
+                Intelligence.</p>
+            <div class="footer-icons">
+                <i class="fab fa-facebook hover-grow"></i>
+                <i class="fab fa-whatsapp hover-grow"></i>
+                <i class="fab fa-twitter hover-grow"></i>
+            </div>
+            <p class="footer-copy">&copy; 2026 KrishiSeva. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modals & UI Components -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeAllModals()"></div>
+
+    <div id="soil-modal" class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-arrow-left modal-back-icon" id="soil-modal-back" onclick="showSoilInfo()"></i>
+            <h2 id="soil-modal-title" class="modal-title">Soil Intelligence</h2>
+            <i class="fas fa-times modal-close" onclick="closeSoilModal()"></i>
+        </div>
+        <div id="soil-details-grid" class="modal-grid">
+        </div>
+    </div>
+
+    <div id="weather-modal" class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-arrow-left modal-back-icon" id="weather-modal-back" onclick="closeWeatherModal()"></i>
+            <h2 id="weather-modal-title" class="modal-title">Gujarat Weather Watch</h2>
+            <i class="fas fa-times modal-close" onclick="closeWeatherModal()"></i>
+        </div>
+        <div id="weather-details-grid" class="modal-grid">
+        </div>
+    </div>
+
+    <!-- Pest Scanner Modal -->
+    <div id="pest-scanner-modal" class="modal-content pest-modal">
+        <div class="pest-modal-header">
+            <i class="fas fa-arrow-left modal-back-icon" id="scanner-modal-back" onclick="resetScanner()"></i>
+            <h2 id="scanner-modal-title" class="modal-title modal-title--compact">AI Pest Scanner</h2>
+            <i class="fas fa-times modal-close" onclick="closeScannerModal()"></i>
+        </div>
+
+        <div id="scanner-view" class="scanner-view">
+            <div id="scanning-line" class="scanning-line">
+            </div>
+            <i class="fas fa-leaf scanner-leaf"></i>
+            <div id="scan-loading" class="scan-loading">
+                <i class="fas fa-spinner fa-spin scan-loading-icon"></i>
+                <p id="scan-status-text">Analyzing Image...</p>
+            </div>
+            <img id="scanned-image-preview" class="scanned-image-preview" alt="Scanned crop preview">
+        </div>
+
+        <div id="scanner-result" class="scanner-result">
+            <div class="glass scanner-result-card">
+                <h4 id="pest-name" class="pest-name">Detection Result: Aphids</h4>
+                <p id="pest-confidence" class="pest-confidence">Confidence:
+                    94.2%
+                </p>
+                <div class="pest-solution">
+                    <h5 id="pest-solution-title" class="pest-solution-title">Recommended Solution:</h5>
+                    <p id="pest-solution-text">Use Neem oil spray (5ml per liter) or organic pesticide. Avoid excessive
+                        nitrogen fertilizer.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="scanner-upload-placeholder">
+            <p id="scanner-instruction" class="scanner-instruction">Upload an
+                image of the affected crop
+                area to start scanning.</p>
+            <input type="file" id="pest-upload-real" class="hidden-file-input" accept="image/*" title="Upload crop photo" aria-label="Upload crop photo"
+                onchange="handlePestScan()">
+            <button class="cta-button" onclick="document.getElementById('pest-upload-real').click()">
+                <i class="fas fa-upload"></i> <span id="btn-upload-text">Select Photo</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Government Schemes Modal -->
+    <div id="govt-modal" class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-arrow-left modal-back-icon" id="govt-modal-back" onclick="showGovtSchemes()"></i>
+            <h2 id="govt-modal-title" class="modal-title">Govt. Schemes & Subsidies</h2>
+            <i class="fas fa-times modal-close" onclick="closeGovtModal()"></i>
+        </div>
+        <div id="govt-details-grid" class="modal-grid modal-grid--wide">
+            <!-- Content Injected via JS -->
+        </div>
+    </div>
+
+    <!-- AI Chatbot Interface -->
+    <div id="chatbot-button" class="glass chatbot-launcher" onclick="toggleChat()">
+        <img src="assets/ai-guru.png" alt="AI Guru" class="chatbot-launcher-image">
+    </div>
+
+    <div id="chat-window" class="glass">
+        <div class="chat-header">
+            <div class="chat-brand">
+                <img src="assets/ai-guru.png" alt="AI Guru" class="chat-avatar">
+                <span id="bot-name" class="chat-bot-name">Krishi AI Guru</span>
+            </div>
+            <div class="chat-toolbar">
+                <i class="fas fa-microphone" id="voice-toggle" onclick="toggleVoice()"
+                    title="Voice Support"></i>
+                <i class="fas fa-times chat-close" onclick="toggleChat()"></i>
+            </div>
+        </div>
+        <div id="chat-messages">
+            <div id="welcome-msg" class="msg-bot glass">Namaste! I am your AI Expert. How can I help you today?</div>
+        </div>
+        <div class="chat-input-bar">
+            <input type="text" id="chat-input" placeholder="Type your query...">
+            <button onclick="sendMessage()" class="cta-button chat-send" title="Send message" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

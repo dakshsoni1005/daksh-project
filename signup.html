@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | KrishiSeva</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--background-color);
+            padding: 2.5rem 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="glass auth-panel auth-panel--compact">
+            <div class="logo auth-brand auth-brand--compact">
+                <i class="fas fa-seedling"></i> KrishiSeva
+            </div>
+
+            <h2 id="signup-title" class="auth-title">Create Account</h2>
+            <p class="auth-subtitle auth-subtitle--compact">Join Thousands of Smart Farmers</p>
+
+            <form class="auth-form auth-form--compact">
+                <div class="form-grid">
+                    <div class="field-group">
+                        <label for="signup-fullname" class="field-label">Full Name</label>
+                        <input type="text" id="signup-fullname" placeholder="John Doe"
+                            class="field-control field-control--compact">
+                    </div>
+                    <div class="field-group">
+                        <label for="signup-mobile" class="field-label">Mobile No.</label>
+                        <input type="tel" id="signup-mobile" placeholder="+91 00000 00000"
+                            class="field-control field-control--compact">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="signup-state" class="field-label">State / Region</label>
+                    <select id="signup-state" title="State or region" class="field-control field-control--compact field-control--select">
+                        <option>Gujarat</option>
+                        <option>Maharashtra</option>
+                        <option>Rajasthan</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label for="signup-password" class="field-label">Create Password</label>
+                    <input type="password" id="signup-password" placeholder="••••••••"
+                        class="field-control field-control--compact">
+                </div>
+
+                <div class="field-group">
+                    <label for="signup-confirm" class="field-label">Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="••••••••"
+                        class="field-control field-control--compact">
+                </div>
+
+                <label class="terms-label">
+                    <input type="checkbox" class="terms-checkbox"> I agree to the Terms of Service and Privacy Policy
+                    for KrishiSeva.
+                </label>
+
+                <button type="button" onclick="simulateSignup(event)" class="cta-button auth-button">Create Account</button>
+            </form>
+
+            <p class="auth-footer auth-footer--compact">
+                Already have an account? <a href="login.html" class="auth-footer-link">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Set theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+
+</html>

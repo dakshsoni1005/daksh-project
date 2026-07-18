@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1770877369196,
+    "fullName": "Daksh Soni",
+    "mobile": "+918799288538",
+    "state": "Gujarat",
+    "password": "daksh#1015",
+    "createdAt": "2026-02-12T06:22:49.196Z"
+  },
+  {
+    "id": 1771053781734,
+    "fullName": "rakesh soni",
+    "mobile": "+919825750781",
+    "state": "Gujarat",
+    "password": "rakesh#0511",
+    "createdAt": "2026-02-14T07:23:01.734Z"
+  },
+  {
+    "id": 1771100806256,
+    "fullName": "shubham",
+    "mobile": "9824597605",
+    "state": "Gujarat",
+    "password": "shubham",
+    "createdAt": "2026-02-14T20:26:46.256Z"
+  }
+]

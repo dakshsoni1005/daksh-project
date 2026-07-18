@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | KrishiSeva</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--background-color);
+            padding: 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="glass auth-panel">
+            <div class="logo auth-brand">
+                <i class="fas fa-seedling"></i> KrishiSeva
+            </div>
+
+            <h2 id="login-title" class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Access your farm dashboard</p>
+
+            <form class="auth-form">
+                <div class="field-group">
+                    <label for="login-mobile" class="field-label">Email or Mobile</label>
+                    <input type="text" id="login-mobile" placeholder="Enter your email or phone"
+                        class="field-control">
+                </div>
+
+                <div class="field-group">
+                    <label for="login-password" class="field-label">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••"
+                        class="field-control">
+                </div>
+
+                <div class="auth-row">
+                    <label class="remember-label">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="button" onclick="simulateLogin(event)" class="cta-button auth-button">Log In</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="signup.html" class="auth-footer-link">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Set theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+
+</html>
