@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | KrishiSeva</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--background-color);
+            padding: 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="glass" style="padding: 3rem; text-align: center;">
+            <div class="logo" style="justify-content: center; margin-bottom: 2rem; font-size: 2rem;">
+                <i class="fas fa-seedling"></i> KrishiSeva
+            </div>
+
+            <h2 id="login-title" style="margin-bottom: 0.5rem; color: var(--text-color);">Welcome Back</h2>
+            <p style="color: var(--text-color); opacity: 0.7; margin-bottom: 2.5rem;">Access your farm dashboard</p>
+
+            <form style="display: flex; flex-direction: column; gap: 1.5rem; text-align: left;">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-weight: 600; color: var(--text-color);">Email or Mobile</label>
+                    <input type="text" id="login-mobile" placeholder="Enter your email or phone"
+                        style="padding: 1rem; border-radius: 12px; outline: none;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-weight: 600; color: var(--text-color);">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••"
+                        style="padding: 1rem; border-radius: 12px; outline: none;">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Forgot
+                        Password?</a>
+                </div>
+
+                <button type="button" onclick="simulateLogin(event)" class="cta-button"
+                    style="padding: 1rem; font-size: 1.1rem; margin-top: 1rem;">Log In</button>
+            </form>
+
+            <p style="margin-top: 2rem; color: var(--text-color); opacity: 0.8;">
+                Don't have an account? <a href="signup.html"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 800;">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Set theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+
+</html>

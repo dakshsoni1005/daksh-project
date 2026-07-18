@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | KrishiSeva</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--background-color);
+            padding: 2.5rem 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="glass" style="padding: 2.5rem; text-align: center;">
+            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem; font-size: 2rem;">
+                <i class="fas fa-seedling"></i> KrishiSeva
+            </div>
+
+            <h2 id="signup-title" style="margin-bottom: 0.5rem; color: var(--text-color);">Create Account</h2>
+            <p style="color: var(--text-color); opacity: 0.7; margin-bottom: 2rem;">Join Thousands of Smart Farmers</p>
+
+            <form style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+                <div class="form-grid">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="font-weight: 600; color: var(--text-color);">Full Name</label>
+                        <input type="text" id="signup-fullname" placeholder="John Doe"
+                            style="padding: 0.9rem; border-radius: 12px; outline: none;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="font-weight: 600; color: var(--text-color);">Mobile No.</label>
+                        <input type="tel" id="signup-mobile" placeholder="+91 00000 00000"
+                            style="padding: 0.9rem; border-radius: 12px; outline: none;">
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-weight: 600; color: var(--text-color);">State / Region</label>
+                    <select id="signup-state"
+                        style="padding: 0.9rem; border-radius: 12px; outline: none; background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-color);">
+                        <option>Gujarat</option>
+                        <option>Maharashtra</option>
+                        <option>Rajasthan</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-weight: 600; color: var(--text-color);">Create Password</label>
+                    <input type="password" id="signup-password" placeholder="••••••••"
+                        style="padding: 0.9rem; border-radius: 12px; outline: none;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-weight: 600; color: var(--text-color);">Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="••••••••"
+                        style="padding: 0.9rem; border-radius: 12px; outline: none;">
+                </div>
+
+                <label
+                    style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; cursor: pointer; opacity: 0.8; margin-top: 0.5rem;">
+                    <input type="checkbox" style="margin-top: 4px;"> I agree to the Terms of Service and Privacy Policy
+                    for KrishiSeva.
+                </label>
+
+                <button type="button" onclick="simulateSignup(event)" class="cta-button"
+                    style="padding: 1rem; font-size: 1.1rem; margin-top: 1rem;">Create Account</button>
+            </form>
+
+            <p style="margin-top: 1.5rem; color: var(--text-color); opacity: 0.8; font-size: 0.95rem;">
+                Already have an account? <a href="login.html"
+                    style="color: var(--primary-color); text-decoration: none; font-weight: 800;">Log In</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Set theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+
+</html>
