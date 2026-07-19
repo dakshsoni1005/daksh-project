@@ -13,7 +13,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "YOUR_API_KEY
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve static files like html, css, js
+app.use(express.static(path.join(__dirname, '..'))); // Serve static files like html, css, js
 
 const USERS_FILE = process.env.VERCEL ? '/tmp/users.json' : path.join(__dirname, 'users.json');
 
