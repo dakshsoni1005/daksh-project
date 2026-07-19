@@ -15,12 +15,23 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname)); // Serve static files like html, css, js
 
-const USERS_FILE = path.join(__dirname, 'users.json');
+const USERS_FILE = process.env.VERCEL ? '/tmp/users.json' : path.join(__dirname, 'users.json');
 
 // Helper to read users
 const readUsers = () => {
-    if (!fs.existsSync(USERS_FILE)) {
-        return [];
+    if (process.env.VERCEL) {
+        if (!fs.existsSync(USERS_FILE)) {
+            const bundledPath = path.join(__dirname, 'users.json');
+            if (fs.existsSync(bundledPath)) {
+                fs.copyFileSync(bundledPath, USERS_FILE);
+            } else {
+                fs.writeFileSync(USERS_FILE, JSON.stringify([], null, 2));
+            }
+        }
+    } else {
+        if (!fs.existsSync(USERS_FILE)) {
+            return [];
+        }
     }
     const data = fs.readFileSync(USERS_FILE);
     return JSON.parse(data);
@@ -336,9 +347,13 @@ app.post('/api/login', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
 
 
 

@@ -440,7 +440,7 @@ async function simulateLogin(event) {
     }
 
     try {
-        const response = await fetch('https://daksh-project.onrender.com/api/login', {
+        const response = await fetch('/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ mobile, password })
@@ -482,7 +482,7 @@ async function simulateSignup(event) {
     }
 
     try {
-        const response = await fetch('https://daksh-project.onrender.com/api/signup', {
+        const response = await fetch('/api/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ fullName, mobile, state, password: pass })
@@ -1384,7 +1384,7 @@ async function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
-        const response = await fetch('https://daksh-project.onrender.com/api/chat', {
+        const response = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: msgText })
