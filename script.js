@@ -370,12 +370,34 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    const icon = document.querySelector('#theme-toggle i');
-    if (theme === 'dark') {
-        icon.className = 'fas fa-sun';
+    const icons = document.querySelectorAll('.theme-switch i');
+    icons.forEach(icon => {
+        if (theme === 'dark') {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    });
+}
+
+// Mobile Menu Navigation Toggle
+function toggleMobileMenu() {
+    const navLinks = document.getElementById('nav-links');
+    const menuIcon = document.querySelector('.mobile-menu-btn i');
+    navLinks.classList.toggle('active');
+    
+    if (navLinks.classList.contains('active')) {
+        menuIcon.className = 'fas fa-times';
     } else {
-        icon.className = 'fas fa-moon';
+        menuIcon.className = 'fas fa-bars';
     }
+}
+
+function closeMobileMenu() {
+    const navLinks = document.getElementById('nav-links');
+    const menuIcon = document.querySelector('.mobile-menu-btn i');
+    if (navLinks) navLinks.classList.remove('active');
+    if (menuIcon) menuIcon.className = 'fas fa-bars';
 }
 
 // Initialization
@@ -383,21 +405,18 @@ function updateThemeIcon(theme) {
 function checkAuth() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const hasAccount = localStorage.getItem('hasAccount') === 'true';
-    const authLinks = document.querySelector('.auth-links');
+    const authLinksContainers = document.querySelectorAll('.auth-links');
 
-    if (isLoggedIn) {
-        if (authLinks) {
+    authLinksContainers.forEach(authLinks => {
+        if (isLoggedIn) {
             authLinks.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span style="color: var(--text-color); font-weight: 600;"><i class="fas fa-user-circle"></i> Farmer</span>
                     <button onclick="logout()" class="cta-button" style="background: #e74c3c; padding: 6px 15px; font-size: 0.85rem;">Log Out</button>
                 </div>
             `;
-        }
-        document.querySelectorAll('.locked-feature').forEach(el => el.classList.remove('locked-feature'));
-    } else {
-        // Not logged in
-        if (authLinks) {
+        } else {
+            // Not logged in
             if (hasAccount) {
                 // Already has an account, only show Log In
                 authLinks.innerHTML = `
@@ -411,6 +430,11 @@ function checkAuth() {
                 `;
             }
         }
+    });
+
+    if (isLoggedIn) {
+        document.querySelectorAll('.locked-feature').forEach(el => el.classList.remove('locked-feature'));
+    } else {
         document.querySelectorAll('.feature-card').forEach(card => card.classList.add('locked-feature'));
     }
 }
